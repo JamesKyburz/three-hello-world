@@ -1,0 +1,39 @@
+{
+  "name": "three-hello-world",
+  "description": "three hello world",
+  "keywords": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jameskyburz/three-hello-world.git"
+  },
+  "author": {
+    "name": "James Kyburz",
+    "email": "james.kyburz@gmail.com"
+  },
+  "main": "index.js",
+  "version": "1.0.0",
+  "scripts": {
+    "glslify-all": "for glsl in *.glsl; do NPM_ARGS=-SE ./install-missing-glslify $glsl; done",
+    "start": "while true; do npm run glslify-all && NPM_ARGS=-SE budo index.js --dir --live -- --debug -p install-missing; sleep 2; done",
+    "prepublish": "standard"
+  },
+  "browserify": {
+    "transform": [
+      "glslify"
+    ]
+  },
+  "dependencies": {
+    "glsl-checker": "1.0.1",
+    "glsl-halftone": "1.0.4",
+    "glsl-hash-blur": "1.0.3",
+    "three": "0.78.0",
+    "three-orbit-viewer": "69.3.0"
+  },
+  "devDependencies": {
+    "budo": "8.3.0",
+    "concat-stream": "1.5.1",
+    "glslify": "5.0.2",
+    "install-missing": "1.1.23",
+    "standard": "7.1.2"
+  }
+}
