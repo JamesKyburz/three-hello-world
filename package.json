@@ -27,6 +27,7 @@
     "glsl-halftone": "1.0.4",
     "glsl-hash-blur": "1.0.3",
     "three": "0.78.0",
+    "three-obj-loader": "1.0.2",
     "three-orbit-viewer": "69.3.0"
   },
   "devDependencies": {

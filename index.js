@@ -1,21 +1,22 @@
 require('./reporterrors')
 var THREE = require('three')
 var OrbitViewer = require('three-orbit-viewer')
+require('three-obj-loader')(THREE)
 var glslify = require('glslify')
 
 var app = OrbitViewer(THREE)({
-  clearColor: 'rgba(50, 50, 50, 0.5)',
+  clearColor: 'rgba(255, 255, 255, 0.7)',
   clearAlpha: 1.0,
-  fov: 70,
-  position: new THREE.Vector3(1, 1, 1),
+  fov: 65,
+  position: new THREE.Vector3(1, 1, -2),
   contextAttributes: {
     antialias: false,
     alpha: false
   }
 })
 
-app.scene.add(new THREE.AmbientLight('rgb(0, 255, 0)'))
-const tex = THREE.ImageUtils.loadTexture('baboon.png', undefined, ready)
+app.scene.add(new THREE.AmbientLight('rgb(0, 0, 0)'))
+const tex = THREE.ImageUtils.loadTexture('baboon.png', undefined, () => {})
 
 const mat = new THREE.ShaderMaterial({
   vertexShader: glslify('./vert.glsl'),
@@ -33,18 +34,10 @@ var dir = new THREE.DirectionalLight(0xcfcfcf, 1)
 dir.position.set(20, 40, -15)
 app.scene.add(dir)
 
-var geo = new THREE.BoxGeometry(1, 1, 1)
-// var mat = new THREE.MeshLambertMaterial({ color: 0xffffff })
-var box = new THREE.Mesh(geo, mat)
-box.rotation.y = -Math.PI
-box.castShadow = true
-box.visible = false
+var loader = new THREE.OBJLoader()
 
-app.scene.add(box)
-
-app.on('tick', (dt) => {
-})
-
-function ready () {
-  box.visible = true
-}
+var parent = new THREE.Object3D()
+app.scene.add(parent)
+// 'model names here'.split(' ').forEach((name) =>
+//   loader.load(`models/${name}.obj`, (model) => parent.add(model) )
+// )

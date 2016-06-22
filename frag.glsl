@@ -32,7 +32,6 @@ void main() {
   
   //mix the two
   float blend = smoothstep(0.0, 0.7, vNorm.z);
-  //gl_FragColor = vec4(snoise3(position), 1.0);
   gl_FragColor.rgb = mix(colorA, colorB, blend);
   gl_FragColor.a = 1.0;
 }
