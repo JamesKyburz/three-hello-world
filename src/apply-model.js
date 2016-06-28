@@ -1,4 +1,5 @@
 var THREE = require('three')
+var picker = require('./picker')
 
 module.exports = (container, app, model) => {
   container.add(model.scene)
@@ -6,6 +7,7 @@ module.exports = (container, app, model) => {
   app.camera.position.copy(view.position)
   app.camera.lookAt(view.lookAt)
   app.renderer.setSize(window.innerWidth, window.innerHeight)
+  picker.addModel(model.scene)
 }
 
 function calculateCamera (model, viewDirection) {
