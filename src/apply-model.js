@@ -1,7 +1,6 @@
 var THREE = require('three')
 
 module.exports = (container, app, model) => {
-  window.top.model = model
   container.add(model.scene)
   var view = calculateCamera(model.scene)
   app.camera.position.copy(view.position)
