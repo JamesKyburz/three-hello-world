@@ -19,7 +19,8 @@
   },
   "standard": {
     "ignore": [
-      "src/gltf/*.js"
+      "src/plugins/gltf/*.js",
+      "src/plugins/*.js"
     ]
   },
   "dependencies": {

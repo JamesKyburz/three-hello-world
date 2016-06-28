@@ -1,5 +1,5 @@
 var THREE = require('three')
-require('./gltf')(THREE)
+require('./plugins')
 var OrbitViewer = require('three-orbit-viewer')
 var app = OrbitViewer(THREE)({
   clearColor: 'rgba(255, 255, 255, 0.7)',
@@ -21,10 +21,10 @@ var dirLightIntensity = 0.5
 var dirLight = new THREE.DirectionalLight(0xffffff, dirLightIntensity)
 dirLight.position.set(0.5, 0.75, 1)
 
-pointLight = new THREE.PointLight(0xffffff, pointLightIntensity, 100)
+var pointLight = new THREE.PointLight(0xffffff, pointLightIntensity, 100)
 pointLight.position = app.camera.position
 
-gridHelper = new THREE.GridHelper(20, 1)
+var gridHelper = new THREE.GridHelper(20, 1)
 
 app.scene.add(gridHelper)
 app.scene.add(dirLight)
