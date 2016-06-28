@@ -14,6 +14,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "while true; do NPM_ARGS=-SE budo index.js --dir --live -- --debug -p install-missing; sleep 2; done",
+    "start:windows": "budo index.js --dir --live -- --debug -p install-missing",
     "prepublish": "standard"
   },
   "standard": {
