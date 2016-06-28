@@ -2,12 +2,19 @@ var THREE = require('three')
 var objects = []
 
 module.exports = (app) => {
+  var selection = []
+  var selectionBox = {
+    update (object) {
+      var box = new THREE.EdgesHelper(object, new THREE.Color('rgba(255, 0, 0, 0.8)'))
+      selection.forEach((x) => app.scene.remove(x))
+      selection = []
+      selection.push(box)
+      box.material.depthTest = false
+      box.material.transparent = false
+      app.scene.add(box)
+    }
+  }
   var container = { dom: app.engine.canvas }
-  var selectionBox = new THREE.BoxHelper()
-  selectionBox.material.depthTest = false
-  selectionBox.material.transparent = true
-  selectionBox.visible = true
-  app.scene.add(selectionBox)
 
   var raycaster = new THREE.Raycaster()
   var mouse = new THREE.Vector2()
