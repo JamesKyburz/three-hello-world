@@ -30,7 +30,7 @@ function run () {
     clearAlpha: 1.0,
     fov: 65,
     far: 10000,
-    once: true,
+    once: false,
     position: new THREE.Vector3(570.565, -2235.66, 961.08),
     target: new THREE.Vector3(0, 0, 0),
     contextAttributes: {
@@ -38,6 +38,7 @@ function run () {
       alpha: false
     }
   })
+  app.renderer.setSize(window.innerWidth, window.innerHeight)
 
   window.app = app
 
@@ -50,14 +51,41 @@ function run () {
   var parent = new THREE.Object3D()
   app.scene.add(parent)
 
-  var loader = new THREE.glTFLoader()
-  loader.load('models/test.gltf', (model) => {
-    parent.add(model.scene)
-    var box = getCompoundBoundingBox(model.scene)
+  // var loader = new THREE.glTFLoader()
+  // loader.load('models/test.gltf', (model) => {
+  //   parent.add(model.scene)
+  //   var box = getCompoundBoundingBox(model.scene)
+  //   var diagonal = box.size().length()
+  //   var position = app.camera.position
+  //   var newDelta = new THREE.Vector3(0, 0, 0)
+  //   newDelta
+  //     .sub(app.camera.position)
+  //     .normalize()
+  //     .multiplyScalar(diagonal)
+
+  //   var newCenter = box.center().clone()
+  //   newCenter.sub(newDelta)
+
+  //   app.camera.position.copy(newCenter)
+  //   app.camera.lookAt(box.center())
+  //   app.renderer.setSize(window.innerWidth, window.innerHeight)
+
+  //   debugger
+  //   //var defaultCamera = (model.cameras || [])[0]
+  //   //if (defaultCamera) {
+  //   //  debugger
+  //   //}
+  // })
+
+  var loader = new THREE.OBJLoader()
+  loader.load('teapot.obj', (model) => {
+    parent.add(model)
+    window.top.model = model
+    app.renderer.setSize(window.innerWidth, window.innerHeight)
+
+    var box = getCompoundBoundingBox(model)
     var diagonal = box.size().length()
-    var position = app.camera.position
     var newDelta = new THREE.Vector3(0, 0, 0)
-    newDelta
       .sub(app.camera.position)
       .normalize()
       .multiplyScalar(diagonal)
@@ -67,36 +95,12 @@ function run () {
 
     app.camera.position.copy(newCenter)
     app.camera.lookAt(box.center())
-    app.renderer.setSize(window.innerWidth, window.innerHeight)
-
-    debugger
-    //var defaultCamera = (model.cameras || [])[0]
-    //if (defaultCamera) {
-    //  debugger
-    //}
-  })
-
-  var loader = new THREE.OBJLoader()
-  loader.load('teapot.obj', (model) => {
-    parent.add(model)
-    window.top.model = model
-    app.renderer.setSize(window.innerWidth, window.innerHeight)
-
-
-    var cameraPos = new THREE.Vector3(30, 10, 70)
-    app.camera.position.copy(cameraPos)
-
-    var geometry = model.children[0].geometry
-    geometry.computeBoundingSphere()
-    app.camera.lookAt(geometry.boundingSphere.center)
-    //model.position.copy(model.worldToLocal(new THREE.Vector3(0, 0, 0)))
   })
 
   window.top.p = parent
-
 }
 
-function getCompoundBoundingBox(object3D) {
+function getCompoundBoundingBox (object3D) {
   var box = null
   object3D.traverse(function (obj3D) {
     var geometry = obj3D.geometry
