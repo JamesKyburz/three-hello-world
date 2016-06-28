@@ -15,4 +15,19 @@ var app = OrbitViewer(THREE)({
   }
 })
 
+var pointLightIntensity = 0.75
+var dirLightIntensity = 0.5
+
+var dirLight = new THREE.DirectionalLight(0xffffff, dirLightIntensity)
+dirLight.position.set(0.5, 0.75, 1)
+
+pointLight = new THREE.PointLight(0xffffff, pointLightIntensity, 100)
+pointLight.position = app.camera.position
+
+gridHelper = new THREE.GridHelper(20, 1)
+
+app.scene.add(gridHelper)
+app.scene.add(dirLight)
+app.scene.add(pointLight)
+
 module.exports = app
