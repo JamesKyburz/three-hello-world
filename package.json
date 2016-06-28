@@ -14,7 +14,7 @@
   "version": "1.0.0",
   "scripts": {
     "glslify-all": "for glsl in *.glsl; do NPM_ARGS=-SE ./install-missing-glslify $glsl; done",
-    "start": "while true; do npm run glslify-all && NPM_ARGS=-SE budo index.js --dir --live -- --debug -p install-missing; sleep 2; done",
+    "start": "while true; do npm run glslify-all && NPM_ARGS=-SE budo index2.js --dir --live -- --debug -p install-missing; sleep 2; done",
     "prepublish": "standard"
   },
   "browserify": {
@@ -27,6 +27,7 @@
     "glsl-halftone": "1.0.4",
     "glsl-hash-blur": "1.0.3",
     "three": "0.78.0",
+    "three-collada-loader": "0.0.1",
     "three-obj-loader": "1.0.2",
     "three-orbit-viewer": "69.3.0"
   },
