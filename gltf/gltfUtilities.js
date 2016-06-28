@@ -194,7 +194,7 @@ SOFTWARE.
         return loadWithXhr(url, undefined, success, error);
     };
 
-    return {
+    module.exports = {
         loadImage : loadImage,
         loadArrayBuffer : loadArrayBuffer,
         loadText : loadText

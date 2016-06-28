@@ -1,3 +1,4 @@
+module.exports = function (THREE) {
 /**
  * @author Tony Parisi / http://www.tonyparisi.com/
  */
@@ -248,4 +249,5 @@ THREE.glTFInterpolator.prototype.copyValue = function(target) {
 	else {
 		target.copy(this.vec3);
 	}		
+}
 }

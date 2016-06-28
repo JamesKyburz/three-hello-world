@@ -1,7 +1,6 @@
 module.exports = function (THREE) {
 
   require('./gltfLoaderUtils')(THREE)
-  require('./gltfUtilities')(THREE)
   require('./gltfShaders')(THREE)
   require('./gltfAnimation')(THREE)
 

@@ -393,6 +393,6 @@ var global = window;
 		root.glTFParser = glTFParser;
 	}
 
-	return glTFParser;
+  module.exports = glTFParser;
 
 }));

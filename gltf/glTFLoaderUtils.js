@@ -1,3 +1,4 @@
+module.exports = function (THREE) {
 /**
  * @author Tony Parisi / http://www.tonyparisi.com/
  */
@@ -297,3 +298,4 @@ THREE.GLTFLoaderUtils = Object.create(Object, {
 	    }
 	},    
 });
+}

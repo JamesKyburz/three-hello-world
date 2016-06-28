@@ -1,3 +1,4 @@
+module.exports = function (THREE) {
 /**
  * @author Tony Parisi / http://www.tonyparisi.com/
  */
@@ -142,4 +143,5 @@ THREE.glTFShader.prototype.update = function(scene, camera) {
 	        }
         }
 	}
+}
 }
