@@ -22,6 +22,11 @@
       "glslify"
     ]
   },
+  "standard": {
+    "ignore": [
+      "gltf/*.js"
+    ]
+  },
   "dependencies": {
     "glsl-checker": "1.0.1",
     "glsl-halftone": "1.0.4",

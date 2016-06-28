@@ -23,18 +23,25 @@ var app = OrbitViewer(THREE)({
 var parent = new THREE.Object3D()
 app.scene.add(parent)
 
-var loader = new THREE.glTFLoader()
+var Loader = THREE.glTFLoader
+
+var loader = new Loader()
 
 var modelUrl = window.localStorage.getItem('model')
 
-if (modelUrl) loader.load(modelUrl, (model) => {
-  parent.add(model.scene)
-  var view = calculateCamera(model.scene)
-  app.camera.position.copy(view.position)
-  app.camera.lookAt(view.lookAt)
-  app.renderer.setSize(window.innerWidth, window.innerHeight)
-  render()
-})
+if (modelUrl) {
+  loader.load(modelUrl, (model) => {
+    parent.add(model.scene)
+    var view = calculateCamera(model.scene)
+    app.camera.position.copy(view.position)
+    app.camera.lookAt(view.lookAt)
+    app.renderer.setSize(window.innerWidth, window.innerHeight)
+    render()
+  })
+} else {
+  window.localStorage.setItem('model', window.prompt('model url including .gltf'))
+  window.location.reload()
+}
 
 function render () {
   var matrix = app.camera.matrixWorldInverse.clone()
