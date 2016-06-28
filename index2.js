@@ -31,7 +31,7 @@ function run () {
     fov: 65,
     far: 10000,
     once: false,
-    position: new THREE.Vector3(570.565, -2235.66, 961.08),
+    position: new THREE.Vector3(570.565, 2235.66, 961.08),
     target: new THREE.Vector3(0, 0, 0),
     contextAttributes: {
       antialias: false,
@@ -83,21 +83,27 @@ function run () {
     window.top.model = model
     app.renderer.setSize(window.innerWidth, window.innerHeight)
 
-    var box = getCompoundBoundingBox(model)
-    var diagonal = box.size().length()
-    var newDelta = new THREE.Vector3(0, 0, 0)
-      .sub(app.camera.position)
-      .normalize()
-      .multiplyScalar(diagonal)
+    var view = calculateCamera(model)
 
-    var newCenter = box.center().clone()
-    newCenter.sub(newDelta)
-
-    app.camera.position.copy(newCenter)
-    app.camera.lookAt(box.center())
+    app.camera.position.copy(view.position)
+    app.camera.lookAt(view.lookAt)
   })
 
   window.top.p = parent
+}
+
+function calculateCamera (model, viewDirection) {
+  viewDirection = viewDirection || new THREE.Vector3(-570.565, -2235.66, -961.08)
+  var box = getCompoundBoundingBox(model)
+  var diagonal = box.size().length()
+  var newDelta = viewDirection.clone()
+    .normalize()
+    .multiplyScalar(diagonal)
+
+  var newCenter = box.center().clone()
+  newCenter.sub(newDelta)
+
+  return { position: newCenter, lookAt: box.center() }
 }
 
 function getCompoundBoundingBox (object3D) {
