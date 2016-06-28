@@ -1,5 +1,4 @@
 var THREE = require('three')
-window.THREE = THREE
 require('./plugins')
 var OrbitViewer = require('three-orbit-viewer')
 var app = OrbitViewer(THREE)({
@@ -16,7 +15,7 @@ var app = OrbitViewer(THREE)({
   }
 })
 
-require('./picker')(app.camera, app.engine.canvas)
+require('./picker')(app)
 
 var pointLightIntensity = 0.75
 var dirLightIntensity = 0.5

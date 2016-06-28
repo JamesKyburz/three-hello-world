@@ -1,8 +1,13 @@
 var THREE = require('three')
 var objects = []
 
-module.exports = (camera, el) => {
-  var container = { dom: el }
+module.exports = (app) => {
+  var container = { dom: app.engine.canvas }
+  var selectionBox = new THREE.BoxHelper()
+  selectionBox.material.depthTest = false
+  selectionBox.material.transparent = true
+  selectionBox.visible = true
+  app.scene.add(selectionBox)
 
   var raycaster = new THREE.Raycaster()
   var mouse = new THREE.Vector2()
@@ -10,7 +15,7 @@ module.exports = (camera, el) => {
   function getIntersects (point, objects) {
     mouse.set((point.x * 2) - 1, -(point.y * 2) + 1)
 
-    raycaster.setFromCamera(mouse, camera)
+    raycaster.setFromCamera(mouse, app.camera)
 
     return raycaster.intersectObjects(objects)
   }
@@ -30,6 +35,8 @@ module.exports = (camera, el) => {
 
       if (intersects.length > 0) {
         var object = intersects[ 0 ].object
+
+        selectionBox.update(object)
 
         console.log('object selected!', object.parent.name)
 
