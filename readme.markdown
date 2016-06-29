@@ -13,3 +13,11 @@ or
 npm install
 npm run start:windows
 ```
+
+# extract
+
+extracts data uris to seperate files
+
+```
+npm run extract [path to gltf]
+```
