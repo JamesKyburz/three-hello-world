@@ -2,12 +2,15 @@ var THREE = require('three')
 var objects = []
 
 module.exports = (app) => {
+  var shift
   var selection = []
   var selectionBox = {
     update (object) {
       var box = new THREE.EdgesHelper(object, new THREE.Color('rgba(255, 0, 0, 0.8)'))
-      selection.forEach((x) => app.scene.remove(x))
-      selection = []
+      if (!shift) {
+        selection.forEach((x) => app.scene.remove(x))
+        selection = []
+      }
       selection.push(box)
       box.material.depthTest = false
       box.material.transparent = false
@@ -106,6 +109,12 @@ module.exports = (app) => {
     onDoubleClickPosition.fromArray(array)
     getIntersects(onDoubleClickPosition, objects)
   }
+
+  function onKeyDown (e) { shift = e.shiftKey }
+  function onKeyUp (e) { shift = false }
+
+  window.addEventListener('keydown', onKeyDown)
+  window.addEventListener('keyup', onKeyUp)
 
   container.dom.addEventListener('mousedown', onMouseDown, false)
   container.dom.addEventListener('touchstart', onTouchStart, false)
