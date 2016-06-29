@@ -31,7 +31,6 @@ function getCompoundBoundingBox (object3D) {
     var geometry = obj3D.geometry
     if (geometry === undefined) return
     geometry.computeBoundingBox()
-    console.log('geo stuff', JSON.stringify(geometry.boundingBox))
     if (box === null) {
       box = geometry.boundingBox
     } else {
