@@ -1,6 +1,7 @@
 var fs = require('fs')
+var path = require('path')
 var source = process.argv[2]
-var prefix = source.split('.')[0]
+var prefix = path.basename(source.split('.')[0])
 var content = fs.readFileSync(source, 'utf8')
 
 console.log('extracting %s', source)
