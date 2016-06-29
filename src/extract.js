@@ -1,7 +1,7 @@
 var fs = require('fs')
 var path = require('path')
 var source = process.argv[2]
-var prefix = path.basename(source.split('.')[0])
+var prefix = source.split('.')[0]
 var content = fs.readFileSync(source, 'utf8')
 
 console.log('extracting %s', source)
@@ -15,7 +15,7 @@ content = content.replace(/data:[^"]*/g, (uri) => {
   var name = prefix + '-' + count.toString() + '.' + (parts[0].match(/plain/) ? 'txt' : 'bin')
   console.log('writing to %s', name)
   fs.writeFileSync(name, data)
-  return name
+  return path.basename(name)
 })
 
 fs.writeFileSync(source, content)
