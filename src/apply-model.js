@@ -7,6 +7,7 @@ module.exports = (container, app, model) => {
   app.camera.position.copy(view.position)
   app.camera.lookAt(view.lookAt)
   app.renderer.setSize(window.innerWidth, window.innerHeight)
+  model.scene.castShadow = true
   picker.addModel(model.scene)
 }
 
