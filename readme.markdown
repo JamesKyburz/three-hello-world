@@ -11,5 +11,5 @@ npm start
 or
 ```
 npm install
-npm start:windows
+npm run start:windows
 ```
