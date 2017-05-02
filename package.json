@@ -26,14 +26,14 @@
     "glsl-checker": "1.0.1",
     "glsl-halftone": "1.0.4",
     "glsl-hash-blur": "1.0.3",
-    "three": "0.78.0",
-    "three-orbit-viewer": "69.3.0"
+    "three": "0.85.2",
+    "three-orbit-viewer": "69.3.1"
   },
   "devDependencies": {
-    "budo": "8.3.0",
-    "concat-stream": "1.5.1",
-    "glslify": "5.0.2",
-    "install-missing": "1.1.23",
-    "standard": "7.1.2"
+    "budo": "10.0.3",
+    "concat-stream": "1.6.0",
+    "glslify": "6.0.2",
+    "install-missing": "1.1.51",
+    "standard": "10.0.2"
   }
 }
